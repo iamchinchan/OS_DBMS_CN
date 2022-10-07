@@ -1,0 +1,137 @@
+intro to OS:
+
+Manager for managiuin our apps
+interface for apps and hardware
+
+OS: have system calls
+resource management,
+abstraction,
+protection: 1 app should not impact another 1
+
+our libraries work on top of system calls
+OS abstracts hardware
+handle multiple processes
+
+where we dont need OS: simple chips, oven
+
+Types of OS: based in functinaly
+
+single tasking-> only 1 process to bethere at be runned in RAM, MS-DOS
+
+multiprogramming and multitasking-> single cpu allowed to do proceess concurrently: so * processes in RAm at same tine assigning to CPU in an interleaved fashion
+and multitasking is enhanced version we can say of multiprogramming, and it provides fixed time slots to the processes in the RAm, so its more responsive i nature.
+
+Multithreading: 
+running multiplle thread within a process in a interleaved fashion
+more responsiveness
+A thread is the smallest unit to be executed that can be assigned to CPU
+
+linux implements the posix threads : std lib for Multithreading
+
+Multiprocessing:
+all above are single processors, so 1 processor can be handled by OS
+OS support for multiple processors
+threads from 1 process can also be distributed among multiple processors, and diff processes can be assigned to soff processors as well 
+now a days we have : multiprocessorr support in our OS, as we have quad, dual or octa core processors
+
+Multiuser OS:
+same OS can be used by multiple consoles or users from multiple consoles
+
+Multithreading:
+
+Servers have thread pools to serve https requests
+
+Race cond: when multiple threads works on same memory or variables
+deadlocks: when  multiple threads cannot proceed at all
+
+process synchronization
+
+process vs thread:
+app:-> processes-> loaded from hardware to RAM then it becomes process-> and within n that wew have threads
+process: code, data, stack, heap, files, executed
+thread: stack,  but common heap stack data shared between other threads of the same process
+threads are lightweight processes. easy to terminate and create 
+virtual to physical memory mappings are stored per process not per thread, as threads within a process share a common memory/adress space
+cahce, tlb
+->tlb : translation lookaside buffer
+context switching within process, swithcing between threads inside a process is easier than context switching bw processes
+as in while oin threads only stack pointer registers and general purpose registers needs to be changed, fast when it is happening in user space and kernel is not involved
+function call stack
+
+User threads vs Kernal threads:
+
+what is a kernel:
+https://www.geeksforgeeks.org/kernel-in-operating-system/
+
+general diff between user mode and kernel mode:
+In kernel mode, the program has direct and unrestricted access to system resources.
+In user mode, the application program executes and starts.
+In user mode, a single process fails if an interrupt occurs.
+Kernel mode is also known as the master mode, privileged mode, or system mode.
+
+Mode switch is required when we make a system call and system calls need to be made when we are using kernel threads
+mode swtich is costly operation
+kernel is aware of how many processors are available and kernel is the system which manages all the processor assigments , so it can take advantage of multi cores
+
+mapping of user threads to kernel threds:
+1-1 : pure kernel manages threads, most popular
+*-1 : purely user managed multithreading system, kernel managing only but multiple user level threads running on top of that
+*-* : multiple uder thread mapped to * kernel threads
+
+In real world: we have already  built libraries: posix by c/c++, Java 
+these lib provide us simle interface to create user thrads, internaly they can use any method to map eoith kernel, most common 1-1
+
+*-1 can run on an OS which does not support multithreading, as its user threads on tip  of only 1 kernel thread, and kernel is not aware of that, acc to it, its just 1 process
+
+The operating system correspondingly includes programs to manage these resources, such as a traffic controller, a scheduler, memory management module, I/O programs, and a file system.
+Multithreading Operating System - This is an extension of multitasking. really imp point which i was imaginging or thinking after the geeks videos
+
+more on geeks notes: https://practice.geeksforgeeks.org/batch/sde-theory-1/track/Introduction-to-Operating-System/article/MjgxOA%3D%3D
+
+In embedded systems, a board support package (BSP) is the layer of software containing hardware-specific
+boot firmware and device drivers and other routines that allow a given embedded operating system,
+for example a real-time operating system (RTOS), to function in a given hardware environment (a motherboard),
+integrated with the embedded operating system.
+
+PCB(Process Control Block) holds the concept of process.
+The process can have the following states new, ready, running, waiting, terminated, and suspended. 
+A thread has three states: Running, Ready, and Blocked. 
+
+A process control block (PCB) contains information about the process,
+i.e. registers, quantum, priority, etc. The process table is an array of PCB's,
+that means logically contains a PCB for all of the current processes in the system.
+
+The process has its own Process Control Block, Stack, and Address Space.
+Thread has Parents' PCB, its own Thread Control Block, and Stack and common Address space.
+A system call is involved in Processes and No system call is involved in threads and those are created using APIs.
+The process does not share data with each other but Threads can share data with each other.
+
+
+Thread Management among user ner kernel level threads:
+In user level threads,the thread library contains the code for thread creation,
+message passing, thread scheduling, data transfer and thread destroying
+while in Kernel level, the application code does not contain thread management code.
+It is merely an API to the kernel mode. The Windows operating system makes use of this feature.
+
+
+When a thread at the kernel level is halted, the kernel can schedule another thread for the same process
+
+What is the difference between multitasking and time-sharing system?
+Ans : Time sharing is the sharing of a computing resource among many users by means of multiprogramming
+and multitasking at the same time 
+whereas multitasking is the concurrent execution of multiple tasks or processes 
+over a certain period of time. Thus, this is the main difference between time sharing and multitasking
+
+the objective of multiprogramming is to have some processes running at all times
+
+functions of OS includes:
+managing computer'a resources very efficiently
+managing the flow of data and instructions
+taking care of scheduling jobs for execution
+
+Thread synchronization is necessary bcz: 
+all threads of a process shsre the smae address space
+all the threads of a process share the same globak variables
+all threads of a process can share the same files
+
+A situation where several processes access and manilulate the same data concurrently is calles as RACE CONDITION.

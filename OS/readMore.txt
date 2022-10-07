@@ -1,0 +1,5 @@
+-> cache 
+->tlb : translation lookaside buffer
+-> how multi user works exactly,and how those applications take advantage of OS having this capability
+->memory subsystem:- A memory Management component that includes buffering caching and spooling.
+-> more on thread synchronization

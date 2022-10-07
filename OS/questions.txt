@@ -1,0 +1,9 @@
+-> how in a single processor who can take only 1 process, if we divide into multiple threads, how that works as we call it Multithreading? using multitaskng? dividing time slots for those thread within a process?
+-> is it not waste of time, kinda trade oif or cal , as we are doing process synchronization and that also takes some fo the time cost and resources?
+-> what is BSP in RTOS: real time OS ans:
+https://en.wikipedia.org/wiki/Board_support_package#:~:text=In%20embedded%20systems%2C%20a%20board,hardware%20environment%20(a%20motherboard)%2C
+
+
+
+
+
